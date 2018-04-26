@@ -1,3 +1,4 @@
+% Put the name of the folder you have the data
 folder = '/Users/macbookpro/Documents/Network_Science_Data/data_preprocessed_matlab';
 cd(folder)
 
