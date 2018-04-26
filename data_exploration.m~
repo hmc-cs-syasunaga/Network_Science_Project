@@ -1,13 +1,14 @@
 
 %% Make nicely formatted data 
 %% 
-pat_list = []; %(pat,chan, time, freq)
+pat_list = [];
 
 % data_folder = '/Users/macbookpro/Documents/Network_Science_Data/data_preprocessed_matlab';
 % cd(data_folder)
 
 
-for pat = 32 % For each participants %TODO: fix pat with more data
+for pat = 32 % For each participants
+    bin_list = [];
     filename = sprintf('TRFDOut_AllPowerBins_ppt%02d.mat',pat);
     load(filename,'data')
     chan_list = []; % (chan, time, freq)
@@ -15,12 +16,12 @@ for pat = 32 % For each participants %TODO: fix pat with more data
         bins = data.data; %TODO: change according to the structure
         freq_list = []; % (time, freq);
         for f = 1:5
-            freq_list(:,f) =  mean(bins(f,:,:),2);
+            freq_list(:,f) =  mean(bins(f,:,:),3);
             disp(size(freq_list))
         end
-        chan_list(chan,:,:) = freq_list;
+        chan_list( = [chan_list freq_list];
     end
-    pat_list(1,:,:,:) = chan_list; %TODO: fix here wth more data
+    pat_list = [pat_list chan_list];
 end
 
 % pat_list = reshape(pat_list, (1,32,5,12)

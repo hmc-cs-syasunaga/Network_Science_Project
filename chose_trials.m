@@ -12,7 +12,7 @@ for i = [1 3 4 10 13 19 23 24 28 30 31 34 35 36 37 39 41 48 50 51 56 57 58 59 60
         disp(data_ind)
         data=data.data(data_ind,1:32,:);
         data2=permute(data,[2,3,1]);
-        myfilename2 = sprintf('eeg0%d.mat', pat);
+        myfilename2 = sprintf('eeg%02d.mat', pat);
         save(myfilename2,'data2')
         pat = pat+1;
         filename = sprintf('s%02d.mat',pat)
