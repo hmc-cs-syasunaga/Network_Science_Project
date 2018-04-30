@@ -16,6 +16,6 @@ for pat = 1:32
         Neur182_ComputeEEGTimeFreq(data2,[1 60000],128);
     out_filename = sprintf('TRFDOut_Sel_ppt%02d',pat);
     adj_filename = sprintf('TRFDAdjMat_Sel_ppt%02d',pat);
-    save(out_filename,trfOut)
-    save(adj_filename,trfAdj)
+    save(out_filename,'trfOut')
+    save(adj_filename,'trfAdj')
 end
