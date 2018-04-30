@@ -1,9 +1,10 @@
 %% loop_eeg_struct
 % To loop through the eeg mat files
-% 
+
 clear
 %% Main
 % pat <- particip
+% file_path path to the folder where you have the data
 file_path = '/Users/macbookpro/Documents/Network_Science_Data/data_preprocessed_matlab';
 
 function_path = '/Users/macbookpro/Dropbox/College/6th Semester/Network Science/Project/Network_Science_Project';
