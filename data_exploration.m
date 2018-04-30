@@ -1,7 +1,7 @@
 
-%% Make nicely formatted data 
-%% 
 clear
+
+%% Make nicely formatted data 
 pat_list = []; %(pat,chan, time, freq)
 
 % data_folder = '/Users/macbookpro/Documents/Network_Science_Data/data_preprocessed_matlab';
@@ -15,7 +15,7 @@ for pat = 32 % For each participants %TODO: fix pat with more data
     data = data.(field);
     chan_list = []; % (chan, time, freq)
     for chan = 1:32 % For each channel
-        bins = cell2mat(data(chan)); %TODO: change according to the structure
+        bins = cell2mat(data(chan));
         disp(size(bins))
         freq_list = []; % (time, freq);
         for f = 1:5
@@ -24,7 +24,7 @@ for pat = 32 % For each participants %TODO: fix pat with more data
         end
         chan_list(chan,:,:) = freq_list;
     end
-    pat_list(1,:,:,:) = chan_list; %TODO: fix here wth more data
+    pat_list(1,:,:,:) = chan_list; %TODO: fix here wth more data... pat_list(pat,:,:,:) = chan_list;
 end
 
 
@@ -42,6 +42,7 @@ values = mean(mean(mean(pat_list,1),3),4);
 values = reshape(values,[1,size(values,2)]);
 plot(values)
 title('channels')
+
 %% Plot Frequency Variance
 figure(3)
 values = mean(mean(mean(pat_list,1),2),3);
