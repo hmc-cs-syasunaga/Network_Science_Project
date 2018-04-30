@@ -49,7 +49,7 @@ values = mean(mean(mean(pat_list,1),2),3);
 values = reshape(values,[1,size(values,4)]);
 plot(values)
 title('frequencies')
-%% Plot time variance
+%% Plot trials variance
 figure(4)
 values = mean(mean(mean(pat_list,1),2),4);
 values = reshape(values,[1,size(values,3)]);
