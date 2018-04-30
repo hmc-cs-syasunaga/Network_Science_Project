@@ -22,7 +22,7 @@ for pat = 1:32
     filename = sprintf('eeg%02d.mat',pat);
     data = load(filename);
     [trfOut,trfAdj] =...
-        Neur182_ComputeEEGTimeFreq(data.data2,[1 60000],128);
+        Neur182_ComputeEEGTimeFreq(data.data2,[1 60000],128); % You can change the parameters 
     out_filename = sprintf('TRFDOut_Sel_ppt%02d',pat);
     adj_filename = sprintf('TRFDAdjMat_Sel_ppt%02d',pat);
     save(out_filename,'trfOut')
