@@ -12,20 +12,20 @@ def data(folder_name):
     # High valence data
     f = open(folder_name+'/X_high.mat','rb')
     X_high = np.array(scipy.io.loadmat(f)['full_list'])
-    X_high.reshape(len(X_high),numFeatures(X_high.shape))
+    X_high = X_high.reshape(len(X_high),numFeatures(X_high.shape))
     y_high = np.ones(len(X_high))
     f.close()
     # Low valence data
     f = open(folder_name+'/X_low.mat','rb')
     X_low  = np.array(scipy.io.loadmat(f)['full_list'])
     print(X_low.shape)
-    X_low.reshape(len(X_low),numFeatures(X_low.shape))
+    X_low = X_low.reshape(len(X_low),numFeatures(X_low.shape))
     y_low = np.zeros(len(X_low))
 
-    print(len(X_high))
-    print(len(X_low))
-    X = np.stack(X_high,X_low)
-    y = np.concatenate(y_high,y_low)
+    X = np.vstack((X_high,X_low))
+    y = np.concatenate((y_high,y_low))
+    print(X.shape)
+    print(y.shape)
 
     return X,y
 

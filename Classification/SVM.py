@@ -1,8 +1,9 @@
 import util
 import numpy as np
 import matplotlib.pyplot as plt
+from mat2python import data
 from sklearn.svm import SVC
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix
 
 
 def tune(X_train, y_train, scoring):
@@ -41,29 +42,32 @@ def tune(X_train, y_train, scoring):
 
 def main():
     X,y = data('/Users/macbookpro/Dropbox/College/6th Semester/Network Science/Project/Network_Science_Project/Secret')
-    k_fold = util.KFold(X,y,1) # Don't get confused. k_fold is ieterator
+    # k_fold = util.KFolder(X,y,1) # Don't get confused. k_fold is ieterator
+    # print(k_fold)
+    splitter = util.splitData(X,y,n_split=1)
+    
+    for X_train, y_train, X_test, y_test in splitter:
+        lin_clf = SVC(kernel='linear',C=0.01)
+        pol_clf = SVC(kernel ='poly', C=1)
+        rbf_clf = SVC(kernel='rbf')
 
-    X_train, y_train, X_test, y_test = k_fold
+        clfs = [lin_clf,pol_clf,rbf_clf]
+        for clf in clfs:
+            clf.fit(X_train,y_train)
+            y_pred = clf.predict(X_test)
+            training_accuracy=accuracy_score(y_train,clf.predict(X_train))
+            test_accuracy = accuracy_score(y_test,y_pred)
+            print('------------------')
+            print('training accuracy')
+            print(training_accuracy)
+            print('test accuracy')
+            print(clf)
+            print(test_accuracy)
+            print('Confusion Matrix')
+            print(confusion_matrix(y_test,y_pred))
 
-    lin_clf = SVC(kernel='linear',C=0.1)
-    pol_clf = SVC(kernel ='ploly', C=1)
-    rbf_clf = SVC(kernel='rbf')
 
-    clfs = [lin_clf,pol_clf,rbf_clf]
-    for clf in clfs:
-        clf.fit(X_train,y_train)
-        y_pred = clf.predict(X_test)
-        training_accuracy=accuracy_score(y_train,clf.predict(X_train))
-        test_accuracy = accuracy_score(y_test,y_pred)
-        print('------------------')
-        print('training accuracy')
-        print(training_accuracy)
-        print('test accuracy')
-        print(clf)
-        print(test_accuracy)
-
-    # Will tune later
-    # tune(X_train,y_train,)    
+    # Will tune later    
 
 
 
